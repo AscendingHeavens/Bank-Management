@@ -203,8 +203,10 @@ The project must include:
 * Basic setup instructions
 * Environment configuration notes
 
-Anyone should be able to run the project with minimal friction.
+> Anyone should be able to run the project with minimal friction.
 Suggestion would be to make a new "Launch.MD"
+
+
 ---
 
 ## Review and Evaluation
