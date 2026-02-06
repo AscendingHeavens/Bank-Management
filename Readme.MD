@@ -3,7 +3,7 @@
 IMPORTANT:
 Read this README fully before starting.
 
-If you cannot read and understand this document end to end, you are way too dumb to take this project and should not have accepted it in the first place.
+If you cannot read and understand this document end to end, you are way too dumb to take this project and should not be hired it in the first place.
 
 ## Overview
 
