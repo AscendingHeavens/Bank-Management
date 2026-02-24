@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"backend/config"
+	services "backend/service"
 
 	"github.com/go-playground/validator"
 	"github.com/labstack/echo/v4"
@@ -11,8 +12,9 @@ import (
 )
 
 type Server struct {
-	router *echo.Echo
-	config config.Config
+	router   *echo.Echo
+	config   config.Config
+	Services *services.Service
 }
 
 // Validator wraps go-playground/validator and implements echo.Validator interface
@@ -24,9 +26,10 @@ func (v *Validator) Validate(i any) error {
 	return v.validator.Struct(i)
 }
 
-func NewServer(config config.Config) (*Server, error) {
+func NewServer(config config.Config, services *services.Service) (*Server, error) {
 	server := &Server{
-		config: config,
+		config:   config,
+		Services: services,
 	}
 	server.setupRouter()
 	return server, nil
@@ -51,6 +54,10 @@ func (s *Server) setupRouter() {
 	router.GET("/hello", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello, World!")
 	})
+
+	authGroup := router.Group("/auth")
+	authGroup.POST("/signup", s.SignUpUser)
+	authGroup.POST("/login", s.LoginUser)
 
 	s.router = router
 }
